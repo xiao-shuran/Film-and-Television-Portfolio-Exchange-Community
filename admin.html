@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>管理后台 · 散场之后</title>
+    <link rel="icon" href="/assets/avatar.jpg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/portfolio.css" />
+    <link rel="stylesheet" href="/admin.css" />
+    <script src="/vendor/lucide.min.js" defer></script>
+    <script src="/admin.js" defer></script>
+  </head>
+  <body class="admin-body">
+    <header class="admin-header">
+      <a href="/"
+        ><i data-lucide="aperture"></i><strong>散场之后</strong
+        ><span>管理后台</span></a
+      >
+      <div>
+        <a class="text-link" href="/" target="_blank" rel="noopener"
+          >查看网站 <i data-lucide="arrow-up-right"></i></a
+        ><button
+          class="icon-button"
+          id="admin-logout"
+          aria-label="退出登录"
+          title="退出登录"
+          hidden
+        >
+          <i data-lucide="log-out"></i>
+        </button>
+      </div>
+    </header>
+    <main id="admin-main"><div class="loading-state">正在连接后台</div></main>
+    <dialog
+      class="confirm-dialog"
+      id="confirm-dialog"
+      aria-labelledby="confirm-title"
+    >
+      <div class="dialog-toolbar">
+        <span id="confirm-title">确认删除</span
+        ><button
+          class="icon-button"
+          data-close="confirm-dialog"
+          aria-label="取消"
+          title="取消"
+        >
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="confirm-body">
+        <p id="confirm-message"></p>
+        <div class="form-actions">
+          <button class="button secondary" data-close="confirm-dialog">
+            取消</button
+          ><button class="button danger" id="confirm-action">
+            <i data-lucide="trash-2"></i>确认删除
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
