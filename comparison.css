@@ -1,0 +1,221 @@
+.color-comparison {
+  margin-block: 30px;
+  min-width: 0;
+}
+.comparison-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.comparison-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 500 14px/1.6 var(--sans);
+}
+.comparison-heading h2 svg {
+  width: 16px;
+  height: 16px;
+  color: var(--red);
+}
+.comparison-heading > div {
+  display: flex;
+  gap: 4px;
+}
+.compare-stage {
+  --compare-position: 50%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #101113;
+  isolation: isolate;
+  user-select: none;
+  touch-action: pan-y;
+  cursor: ew-resize;
+}
+.compare-stage .compare-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  border-radius: 0;
+}
+.compare-stage .compare-before {
+  z-index: 1;
+  clip-path: inset(0 calc(100% - var(--compare-position)) 0 0);
+}
+.compare-labels {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
+  gap: 12px;
+}
+.compare-labels span {
+  padding: 5px 10px;
+  color: #fff;
+  background: #141517b8;
+  font: 11px/1.5 var(--sans);
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.compare-divider {
+  position: absolute;
+  left: var(--compare-position);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 1px #0003;
+  z-index: 3;
+  pointer-events: none;
+}
+.compare-divider span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f6;
+  color: #242725;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px #0003;
+  transition:
+    box-shadow 0.2s,
+    scale 0.2s;
+}
+.compare-divider svg {
+  width: 22px;
+  height: 22px;
+}
+.compare-stage:hover .compare-divider span,
+.compare-stage.is-dragging .compare-divider span {
+  scale: 1.07;
+}
+.compare-stage:focus-within .compare-divider span {
+  box-shadow:
+    0 0 0 4px var(--red),
+    0 2px 12px #0003;
+}
+.compare-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.compare-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background: #141517d9;
+  color: #edf0f3;
+  font-size: 12px;
+  z-index: 4;
+  pointer-events: none;
+}
+.compare-status[hidden],
+.comparison-heading [hidden] {
+  display: none;
+}
+.compare-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-block: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.compare-timeline {
+  min-width: 0;
+  flex: 1;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+.compare-time {
+  font: 11px/1.5 var(--mono);
+  color: var(--subtle);
+  min-width: 99px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.color-comparison:fullscreen {
+  background: #141517;
+  color: #edf0f3;
+  margin: 0;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.color-comparison:fullscreen .compare-stage {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  max-height: calc(100dvh - 130px);
+}
+.color-comparison:fullscreen .comparison-heading,
+.color-comparison:fullscreen .compare-controls {
+  flex-shrink: 0;
+}
+.color-comparison:fullscreen .compare-time {
+  color: #c3c8ce;
+}
+@media (max-width: 700px) {
+  .compare-labels {
+    top: 9px;
+    left: 9px;
+    right: 9px;
+  }
+  .compare-labels span {
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+  .compare-divider span {
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+  }
+  .compare-controls {
+    gap: 5px;
+  }
+  .compare-time {
+    min-width: 88px;
+    font-size: 10px;
+  }
+  .color-comparison:fullscreen {
+    padding: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .compare-divider span {
+    transition: none;
+  }
+  .compare-stage:hover .compare-divider span,
+  .compare-stage.is-dragging .compare-divider span {
+    scale: 1;
+  }
+}

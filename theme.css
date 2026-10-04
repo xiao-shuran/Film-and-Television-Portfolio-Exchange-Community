@@ -1,0 +1,84 @@
+html {
+  color-scheme: light;
+  background: var(--paper);
+  scrollbar-color: var(--line) var(--paper);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+html[data-theme="dark"] .button:not(.secondary):hover,
+html[data-theme="dark"] .button.danger {
+  color: var(--paper);
+}
+.theme-button {
+  position: relative;
+  overflow: hidden;
+}
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition:
+    opacity 0.24s ease,
+    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.theme-icon-sun {
+  opacity: 0;
+  transform: rotate(-75deg) scale(0.65);
+}
+html[data-theme="dark"] .theme-icon-moon {
+  opacity: 0;
+  transform: rotate(75deg) scale(0.65);
+}
+html[data-theme="dark"] .theme-icon-sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+.theme-fading,
+.theme-fading body,
+.theme-fading body *,
+.theme-fading body *::before,
+.theme-fading body *::after,
+.theme-fading dialog::backdrop {
+  transition-property:
+    background-color, color, border-color, fill, stroke, outline-color,
+    box-shadow;
+  transition-duration: 0.42s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(root) {
+  animation-duration: 0.44s;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  animation: none;
+  z-index: 1;
+}
+::view-transition-new(root) {
+  animation: theme-fade 0.44s cubic-bezier(0.22, 1, 0.36, 1) both;
+  z-index: 2;
+}
+@keyframes theme-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}

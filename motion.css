@@ -1,0 +1,214 @@
+:root {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.button,
+.hero-button {
+  transition:
+    background-color 0.22s,
+    color 0.22s,
+    border-color 0.22s,
+    transform 0.32s var(--motion-ease),
+    box-shadow 0.32s var(--motion-ease);
+}
+.button:not(:disabled):hover,
+.hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px #14151718;
+}
+.button:not(:disabled):active,
+.hero-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.text-link,
+.desktop-nav a,
+.project-card a,
+.topic-summary h2 a,
+.admin-topic-title {
+  transition: color 0.24s var(--motion-ease);
+}
+.icon-button {
+  transition:
+    background-color 0.24s var(--motion-ease),
+    color 0.24s var(--motion-ease),
+    transform 0.24s var(--motion-ease);
+}
+.icon-button:hover {
+  transform: translateY(-1px);
+}
+.icon-button:active {
+  transform: translateY(0);
+}
+.text-link svg,
+.button svg,
+.hero-button svg {
+  transition: transform 0.34s var(--motion-ease);
+}
+.text-link:hover svg,
+.hero-button:hover svg {
+  transform: translate(2px, -2px);
+}
+.button:hover svg {
+  transform: translateX(2px);
+}
+.button:active,
+.hero-button:active {
+  transform: translateY(1px);
+}
+.button:disabled {
+  transform: none;
+}
+.project-cover img {
+  transition: transform 0.8s var(--motion-ease-soft);
+}
+.topic-row {
+  transition:
+    background-color 0.28s var(--motion-ease),
+    transform 0.28s var(--motion-ease);
+}
+.topic-row:hover {
+  background: color-mix(in srgb, var(--tint) 55%, transparent);
+  transform: translateX(3px);
+}
+.header-avatar img {
+  transition: transform 0.5s var(--motion-ease);
+}
+.header-avatar:hover img {
+  transform: scale(1.08);
+}
+.desktop-nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  height: 1px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s;
+}
+.desktop-nav a:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.motion-ready .hero-image {
+  animation: cinema-settle 1.2s var(--motion-ease-soft) both;
+}
+.motion-ready .hero-content > * {
+  animation: frame-arrival 0.72s var(--motion-ease) both;
+}
+.motion-ready .hero-content > :nth-child(2) {
+  animation-delay: 90ms;
+}
+.motion-ready .hero-content > :nth-child(3) {
+  animation-delay: 170ms;
+}
+.motion-ready .hero-content > :nth-child(4) {
+  animation-delay: 250ms;
+}
+.motion-ready .hero-topline {
+  animation: frame-arrival 0.72s 80ms var(--motion-ease) both;
+}
+.motion-ready .hero-caption {
+  animation: frame-arrival 0.72s 170ms var(--motion-ease) both;
+}
+.motion-ready .hero-credit {
+  animation: frame-arrival 0.72s 360ms var(--motion-ease) both;
+}
+.motion-ready dialog[open] {
+  transform-origin: 50% 12%;
+  animation: dialog-arrival 0.36s var(--motion-ease) both;
+}
+.motion-ready dialog[open]::backdrop {
+  animation: backdrop-arrival 0.36s ease both;
+}
+.motion-ready .mobile-nav:not([hidden]) {
+  animation: frame-arrival 0.3s var(--motion-ease) both;
+}
+.motion-ready .motion-page-enter {
+  animation: page-arrival 0.38s var(--motion-ease) both;
+}
+.motion-ready .motion-content-enter {
+  animation: content-arrival 0.42s var(--motion-ease) both;
+}
+@keyframes cinema-settle {
+  from {
+    transform: scale(1.045);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes frame-arrival {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes page-arrival {
+  from {
+    opacity: 0.35;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes content-arrival {
+  from {
+    opacity: 0.2;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes dialog-arrival {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.988);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes backdrop-arrival {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 900px) {
+  .desktop-nav a::before {
+    bottom: 23px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .hero-image,
+  .motion-ready .hero-content > *,
+  .motion-ready .hero-topline,
+  .motion-ready .hero-caption,
+  .motion-ready .hero-credit,
+  .motion-ready dialog[open],
+  .motion-ready dialog[open]::backdrop,
+  .motion-ready .mobile-nav:not([hidden]) {
+    animation: none;
+  }
+  .text-link:hover svg,
+  .hero-button:hover svg,
+  .button:hover svg,
+  .header-avatar:hover img {
+    transform: none;
+  }
+}

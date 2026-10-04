@@ -1,0 +1,19 @@
+{
+  "name": "after-the-credits-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal portfolio with an anonymous forum and private administration",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "init-admin": "node init-admin.mjs",
+    "start": "node server.mjs",
+    "test": "node --test tests/server.test.mjs",
+    "check": "npm test",
+    "package": "powershell -NoProfile -ExecutionPolicy Bypass -File package-site.ps1",
+    "backup": "powershell -NoProfile -ExecutionPolicy Bypass -File backup-site.ps1",
+    "release": "npm run check && npm run package"
+  }
+}

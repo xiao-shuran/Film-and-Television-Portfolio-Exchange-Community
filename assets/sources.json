@@ -1,0 +1,12 @@
+[
+  {
+    "file": "assets/avatar.jpg",
+    "source": "User-provided image",
+    "usage": "Personal avatar"
+  },
+  {
+    "file": "assets/portfolio-hero.jpg",
+    "source": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920&q=85",
+    "usage": "Cinema photo used as site background, not a portfolio project"
+  }
+]
